@@ -4,10 +4,27 @@
   "description": "Generate API keys for NodeJS",
   "main": "index.coffee",
   "dependencies": {
-    "basejump": "^0.1.1"
+    "basejump": "^0.1.1",
+    "node-pre-gyp": "^0.6.9"
+  },
+  "binary": {
+    "module_name": "node-apikey",
+    "module_path": "./lib/binding/{configuration}/{node_abi}-{platform}-{arch}/",
+    "remote_path": "./{module_name}/v{version}/{configuration}/",
+    "package_name": "{module_name}-v{version}-{node_abi}-{platform}-{arch}.tar.gz",
+    "host": "https://node-pre-gyp-tests.s3-us-west-1.amazonaws.com"
+  },
+  "bundledDependencies": [
+    "node-pre-gyp"
+  ],
+  "scripts": {
+    "install": "node-pre-gyp install --fallback-to-build",
+    "test": "mocha",
+    "prepublish": "npm ls"
   },
   "devDependencies": {
     "chai": "*",
+    "coffee-script": "^1.9.3",
     "grunt": "^0.4.5",
     "grunt-aws-lambda": "^0.10.0",
     "grunt-concurrent": "^1.0.0",
