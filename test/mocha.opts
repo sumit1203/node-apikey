@@ -1,0 +1,4 @@
+--compilers coffee:coffee-script/register
+-R spec
+--full-trace
+--timeout 10000
