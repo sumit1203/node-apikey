@@ -1,4 +1,3 @@
-
 module.exports = ( grunt ) ->
 
   grunt.initConfig
@@ -15,23 +14,23 @@ module.exports = ( grunt ) ->
         bare : true
         force : true
 
-      default :
+      lib :
         expand : true
-        dest : "build/"
+        dest : "dist/lib"
         src : [ '**/*.coffee' ]
         cwd : "lib/"
         ext : '.js'
 
       main :
         expand : true
-        src : [ '*.coffee' ]
+        dest : "dist"
+        src : [ 'index.coffee' ]
         ext : '.js'
 
 
-  for t in [ "execute", "contrib-watch", "contrib-coffee", "contrib-clean",
-             "aws-lambda", "contrib-copy" ]
+  for t in [ "contrib-coffee", "contrib-clean" ]
     grunt.loadNpmTasks "grunt-#{t}"
 
-  grunt.registerTask "default", [ "clean", "coffee"]
+  grunt.registerTask "default", [ "clean", "coffee" ]
 
 
